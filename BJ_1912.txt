@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int arr[100001]{};
+int sum[100001]{};
+
+int main()
+{
+	int input;
+	cin >> input;
+	
+	int ans = -2147483648;
+
+	for (int i = 0; i < input; i++)
+	{
+		cin >> arr[i];
+		int temp_sum = -2147483648;
+		int total_sum = 0;
+		for (int j = i; j < input; j++)
+		{
+			total_sum += arr[j];
+			temp_sum = max(total_sum, temp_sum);
+		}
+		ans = max(temp_sum, ans);
+	}
+	cout << ans;
+}
