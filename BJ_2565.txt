@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int input;
+	int arr[501]{};
+	int dp[501]{};
+	cin >> input;
+	for (int i = 0; i < input; i++)
+	{
+		int a, b;
+		cin >> a >> b;
+		arr[b] = a;
+	}
+
+	int flag = 0;
+	for (int i = 1; flag < input; i++)
+	{
+		if (arr[i] != 0)
+		{
+			flag++;
+			dp[i] = 1;
+			for (int j = 1; j < i; j++)
+			{	
+				if (arr[j] < arr[i])
+				{
+					dp[i] = max(dp[j] + 1, dp[i]);
+				}
+			}
+		}
+	}
+	flag = 0;
+	int ans = 0;
+	for (int i = 1; flag < input; i++)
+	{
+		if (arr[i] != 0)
+		{
+			flag++;
+			ans = max(dp[i], ans);
+		}
+	}
+
+	cout << input - ans;
+
+}
